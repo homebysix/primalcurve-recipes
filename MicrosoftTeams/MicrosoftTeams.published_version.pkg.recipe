@@ -54,7 +54,7 @@
          </dict>
          <dict>
             <key>Processor</key>
-            <string>AsarVersioner</string>
+            <string>com.github.primalcurve.shared/AsarVersioner</string>
             <key>comment</key>
             <string>Custom processor that extracts the version string from the embedded Electron app.asar file.</string>
             <key>Arguments</key>
