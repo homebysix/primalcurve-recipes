@@ -18,7 +18,7 @@
 #
 # Some code borrowed from pyasar:
 # https://github.com/Photonios/pyasar
-"""See docstring for AsarVersioner class"""
+"""See docstring for HudlFileManager class"""
 
 import glob
 import json
@@ -31,7 +31,7 @@ import struct
 from autopkglib import ProcessorError
 from autopkglib.Unarchiver import Unarchiver
 
-__all__ = ["AsarVersioner"]
+__all__ = ["HudlFileManager"]
 
 UNKNOWN_VERSION = "UNKNOWN_VERSION"
 
