@@ -2,7 +2,7 @@
 #
 # Copyright 2021 Glynn Lane (primalcurve)
 #
-# Based on Unarchiver Copyright 2016 Greg Neagle
+# Based on Unarchiver Copyright 2010 Per Olofsson
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
