@@ -163,5 +163,5 @@ class HudlFileManager(Unarchiver):
 
 
 if __name__ == "__main__":
-    PROCESSOR = AsarVersioner()
+    PROCESSOR = HudlFileManager()
     PROCESSOR.execute_shell()
