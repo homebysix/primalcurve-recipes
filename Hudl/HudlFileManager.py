@@ -17,13 +17,9 @@
 # limitations under the License.
 """See docstring for HudlFileManager class"""
 
-import glob
-import json
 import pathlib
-import plistlib
 import re
 import shutil
-import struct
 
 from autopkglib import ProcessorError
 from autopkglib.Unarchiver import Unarchiver
