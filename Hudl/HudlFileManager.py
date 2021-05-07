@@ -15,9 +15,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-#
-# Some code borrowed from pyasar:
-# https://github.com/Photonios/pyasar
 """See docstring for HudlFileManager class"""
 
 import glob
