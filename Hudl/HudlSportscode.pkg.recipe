@@ -21,21 +21,7 @@
     <array>
         <dict>
             <key>Processor</key>
-            <string>FileFinder</string>
-            <key>Arguments</key>
-            <dict>
-                <key>pattern</key>
-                <string>%RECIPE_CACHE_DIR%/downloads/%NAME%.dmg</string>
-            </dict>
-        </dict>
-        <dict>
-            <key>Processor</key>
             <string>AppDmgVersioner</string>
-            <key>Arguments</key>
-            <dict>
-                <key>dmg_path</key>
-                <string>%found_filename%</string>
-            </dict>
         </dict>
         <dict>
             <key>Processor</key>
@@ -43,7 +29,7 @@
             <key>Arguments</key>
             <dict>
                 <key>app_path</key>
-                <string>%found_filename%/%APP_NAME%.app</string>
+                <string>%dmg_path%/%APP_NAME%.app</string>
                 <key>pkg_path</key>
                 <string>%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg</string>
             </dict>
