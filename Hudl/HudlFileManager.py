@@ -71,7 +71,7 @@ class HudlFileManager(Unarchiver):
                 "basis. Currently, this means that on macOS platform "
                 "utilities are used, and otherwise Python is used."
             ),
-            "default": _default_use_python_native_extractor(),
+            "default": Unarchiver._default_use_python_native_extractor(),
         },
     }
     output_variables = {
