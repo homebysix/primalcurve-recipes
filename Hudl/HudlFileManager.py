@@ -21,7 +21,7 @@ import pathlib
 import re
 import shutil
 
-from autopkglib import ProcessorError
+from autopkglib import ProcessorError, is_mac
 from autopkglib.Unarchiver import Unarchiver
 
 __all__ = ["HudlFileManager"]
@@ -34,6 +34,12 @@ EXTNS = {
     "tar": ["tar"],
     "gzip": ["gzip"],
 }
+
+
+def _default_use_python_native_extractor() -> bool:
+    if is_mac():
+        return False
+    return True
 
 
 class HudlFileManager(Unarchiver):
@@ -71,7 +77,7 @@ class HudlFileManager(Unarchiver):
                 "basis. Currently, this means that on macOS platform "
                 "utilities are used, and otherwise Python is used."
             ),
-            "default": Unarchiver._default_use_python_native_extractor(),
+            "default": _default_use_python_native_extractor(),
         },
     }
     output_variables = {
