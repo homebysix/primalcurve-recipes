@@ -62,6 +62,17 @@ class HudlFileManager(Unarchiver):
                 "Path to directory in which to extract archives."
             ),
         },
+        "USE_PYTHON_NATIVE_EXTRACTOR": {
+            "required": False,
+            "description": (
+                "Controls whether or not Unarchiver extracts the archive with "
+                "native Python code, or calls out to a platform specific "
+                "utility. The default is determined on a platform specific "
+                "basis. Currently, this means that on macOS platform "
+                "utilities are used, and otherwise Python is used."
+            ),
+            "default": _default_use_python_native_extractor(),
+        },
     }
     output_variables = {
         "dmg_path": {"description": "DMG to feed into AppDmgVersioner."}
