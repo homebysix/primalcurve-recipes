@@ -113,16 +113,22 @@ class AsarVersioner(Versioner):
                 f"Can't determine header size of {path}: {error}"
             )
 
-        # substract 8 bytes from the header size, again because google's
+        # subtract 8 bytes from the header size, again because google's
         # pickle format uses some padding here
         header_size = header_size[0] - 8
 
         # read the actual header, which is a json string, again skip 8
         # bytes because of pickle padding
         asar_file.seek(asar_file.tell() + 8)
-        header = asar_file.read(header_size).decode('utf-8')
+        # Strip any null characters if the header size is slightly off
+        header = asar_file.read(header_size).decode('utf-8').rstrip('\x00')
 
-        json_header = json.loads(header)
+        try:
+            json_header = json.loads(header)
+        except ValueError as err:
+            raise ProcessorError(
+                f"There was a problem parsing the json header! {err}"
+            )
         base_offset = asar_file.tell()
         return asar_file, json_header, base_offset
 
