@@ -27,6 +27,13 @@ from autopkglib.Unarchiver import Unarchiver
 __all__ = ["HudlFileManager"]
 
 UNKNOWN_VERSION = "UNKNOWN_VERSION"
+EXTNS = {
+    "zip": ["zip"],
+    "tar_gzip": ["tar.gz", "tgz"],
+    "tar_bzip2": ["tar.bz2", "tbz"],
+    "tar": ["tar"],
+    "gzip": ["gzip"],
+}
 
 
 class HudlFileManager(Unarchiver):
@@ -119,8 +126,8 @@ class HudlFileManager(Unarchiver):
                     f"Guessed archive format '{file_fmt}' from filename "
                     f"'{new_pathname.name}'"
                 )
-                if file_fmt not in list(Unarchiver.EXTNS.keys()):
-                    err_msg = ", ".join(list(Unarchiver.EXTNS.keys()))
+                if file_fmt not in list(EXTNS.keys()):
+                    err_msg = ", ".join(list(EXTNS.keys()))
                     raise ProcessorError(
                         f"'{file_fmt}' is not valid for the 'archive_format' "
                         f"variable. Must be one of {err_msg}."
