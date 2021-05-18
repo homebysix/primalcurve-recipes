@@ -97,7 +97,7 @@ class HudlFileManager(Unarchiver):
             )
 
         # Convert to pathlib.Path for further processing
-        pathname = pathlib.Path(self.env["pathname"])
+        pathname = pathlib.Path(pathname)
         if not pathname.exists():
             raise ProcessorError(
                 f"File from previous processor (pathname: {pathname}) does "
@@ -160,7 +160,7 @@ class HudlFileManager(Unarchiver):
                 recipe_name = self.env["NAME"]
                 file_regex = rf"{recipe_name}.*\.dmg"
                 for file_path in destination_path.glob("*.dmg"):
-                    if re.match(file_regex, file_path):
+                    if re.match(file_regex, file_path.name):
                         self.env["dmg_path"] = str(file_path)
                         break
 
