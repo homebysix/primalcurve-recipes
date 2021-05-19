@@ -5,13 +5,11 @@
     <key>Description</key>
     <string>Downloads latest Skype disk image and builds a package with a full version string.</string>
     <key>Identifier</key>
-    <string>com.github.primalcurve.pkg.published_version.MicrosoftSkype</string>
+    <string>com.github.primalcurve.pkg.published_version.Skype</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>
-        <string>MicrosoftSkype</string>
-        <key>app_name</key>
-        <string>MicrosoftSkype</string>
+        <string>Skype</string>
     </dict>
     <key>MinimumVersion</key>
     <string>2.3.2</string>
