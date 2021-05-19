@@ -25,7 +25,7 @@
             <key>Arguments</key>
             <dict>
                <key>version_key</key>
-               <string>INVALID_KEY</string>
+               <string>CFBundleVersion</string>
             </dict>
         </dict>
     </array>
