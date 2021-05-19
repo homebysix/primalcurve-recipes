@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>Downloads latest Skype disk image and builds a package with a full version string.</string>
+    <key>Identifier</key>
+    <string>com.github.primalcurve.pkg.published_version.MicrosoftSkype</string>
+    <key>Input</key>
+    <dict>
+        <key>NAME</key>
+        <string>MicrosoftSkype</string>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>2.3.2</string>
+    <key>ParentRecipe</key>
+    <string>com.github.autopkg.download.Skype</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Processor</key>
+            <string>AppPkgCreator</string>
+            <key>comment</key>
+            <string>Using the optional 'version_key' Argument to extract the full version number.</string>
+            <key>Arguments</key>
+            <dict>
+               <key>version_key</key>
+               <string>INVALID_KEY</string>
+            </dict>
+        </dict>
+    </array>
+</dict>
+</plist>
