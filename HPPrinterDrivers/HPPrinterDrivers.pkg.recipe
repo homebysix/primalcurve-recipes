@@ -44,7 +44,7 @@
             <string>com.github.primalcurve.shared/PackageInfoReader</string>
             <key>Arguments</key>
             <dict>
-                <key>pathname</key>
+                <key>pkg_info_path</key>
                 <string>%found_filename%</string>
                 <key>target_key</key>
                 <string>version</string>

@@ -33,7 +33,7 @@ class PackageInfoReader(Processor):
         """Tries to get requested info from a PackageInfo file"""
     )
     input_variables = {
-        "pathname": {
+        "pkg_info_path": {
             "required": True,
             "description": (
                 "Path to PackageInfo file."
@@ -69,13 +69,13 @@ class PackageInfoReader(Processor):
 
 
     def main(self):
-        """Return a path do a DMG  for file at pathname
+        """Return a path do a DMG  for file at pkg_info_path
         """
         # Handle some defaults for archive_path and destination_path
-        pathname = self.env.get("pathname")
-        if not pathname:
+        pkg_info_path = self.env.get("pkg_info_path")
+        if not pkg_info_path:
             raise ProcessorError(
-                "Expected a 'pathname' input variable but none is set!"
+                "Expected a 'pkg_info_path' input variable but none is set!"
             )
 
         target_key = self.env.get("target_key")
@@ -85,16 +85,16 @@ class PackageInfoReader(Processor):
             )
 
         # Convert to pathlib.Path for further processing
-        pathname = pathlib.Path(self.env["pathname"])
-        if not pathname.exists():
+        pkg_info_path = pathlib.Path(self.env["pkg_info_path"])
+        if not pkg_info_path.exists():
             raise ProcessorError(
-                f"File from previous processor (pathname: {pathname}) does "
-                f"not exist!"
+                f"File from previous processor (pkg_info_path: "
+                f"{pkg_info_path}) does not exist!"
             )
 
         try:
             # Open file and read its contents
-            with open(pathname, "rb") as fp:
+            with open(pkg_info_path, "rb") as fp:
                 package_info = ET.fromstring(fp.read())
 
             # Attempt to find the target key in the `pkg-info` root object
@@ -119,7 +119,8 @@ class PackageInfoReader(Processor):
                 )
 
             self.output(
-                f"Found value {self.env['target_value']} in file {pathname}"
+                f"Found value {self.env['target_value']} "
+                f"in file {pkg_info_path}"
             )
         except ProcessorError:
             raise
