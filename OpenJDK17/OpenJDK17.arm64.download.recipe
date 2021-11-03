@@ -13,7 +13,7 @@
         <key>MAJOR_VERSION</key>
         <string>17</string>
         <key>ARCH_TYPE</key>
-        <string>aarm64</string>
+        <string>aarch64</string>
         <key>VENDOR</key>
         <string>OpenJDK</string>
         <key>SOFTWARETITLE</key>
