@@ -12,6 +12,8 @@
          <string>OpenJDK 17</string>
          <key>VENDOR</key>
          <string>OpenJDK</string>
+         <key>ARCH_TYPE</key>
+         <string>aarch64</string>
          <key>SOFTWARETITLE</key>
          <string>Java</string>
          <key>SOFTWARETYPE</key>
@@ -118,7 +120,7 @@ exit 0</string>
                <key>pkg_request</key>
                <dict>
                   <key>pkgname</key>
-                  <string>%VENDOR%-%version%</string>
+                  <string>%VENDOR%-%ARCH_TYPE%-%version%</string>
                   <key>version</key>
                   <string>%version%</string>
                   <key>id</key>
