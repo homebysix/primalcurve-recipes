@@ -12,6 +12,8 @@
         <string>OpenJDK 17</string>
         <key>MAJOR_VERSION</key>
         <string>17</string>
+        <key>ARCH_TYPE</key>
+        <string>x64</string>
         <key>VENDOR</key>
         <string>OpenJDK</string>
         <key>SOFTWARETITLE</key>
@@ -21,7 +23,7 @@
         <key>SEARCH_URL</key>
         <string>https://jdk.java.net/%MAJOR_VERSION%/index.html</string>
         <key>SEARCH_PATTERN</key>
-        <string>(?P&lt;url&gt;https://download.java.net/java/GA/jdk%MAJOR_VERSION%.*?/GPL/openjdk-%MAJOR_VERSION%.*?_osx-x64_bin\.tar\.gz)</string>
+        <string>(?P&lt;url&gt;https://download.java.net/java/GA/jdk%MAJOR_VERSION%.*?/GPL/openjdk-%MAJOR_VERSION%.*?_macos-%ARCH_TYPE%_bin\.tar\.gz)</string>
     </dict>
     <key>MinimumVersion</key>
     <string>1.0.0</string>
