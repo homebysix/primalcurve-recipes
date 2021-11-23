@@ -12,6 +12,8 @@
     <dict>
         <key>NAME</key>
         <string>ReadWrite</string>
+        <key>APP_NAME</key>
+        <string>Read&amp;Write.app</string>
         <key>PRODUCT_CODE</key>
         <string></string>
         <key>PRODUCT_DOMAIN</key>
@@ -23,11 +25,18 @@
     <array>
         <dict>
             <key>Processor</key>
-            <string>AppDmgVersioner</string>
+            <string>PlistReader</string>
             <key>Arguments</key>
             <dict>
-                <key>dmg_path</key>
-                <string>%pathname%</string>
+                <key>info_path</key>
+                <string>%RECIPE_CACHE_DIR%/Applications/%APP_NAME%/Contents/Info.plist</string>
+                <key>plist_keys</key>
+                <dict>
+                    <key>CFBundleShortVersionString</key>
+                    <string>version</string>
+                    <key>CFBundleIdentifier</key>
+                    <string>bundleid</string>
+                </dict>
             </dict>
         </dict>
         <dict>
@@ -52,9 +61,9 @@
             <key>Arguments</key>
             <dict>
                 <key>source_path</key>
-                <string>%pathname%/%app_name%</string>
+                <string>%RECIPE_CACHE_DIR%/Applications/%APP_NAME%</string>
                 <key>destination_path</key>
-                <string>%pkgroot%/Applications/%app_name%</string>
+                <string>%pkgroot%/Applications/%APP_NAME%</string>
             </dict>
         </dict>
         <dict>
