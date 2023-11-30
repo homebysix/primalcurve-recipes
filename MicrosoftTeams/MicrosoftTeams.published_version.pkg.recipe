@@ -1,95 +1,113 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-   <dict>
-      <key>Description</key>
-      <string>Downloads the latest version of Microsoft's Teams installer package and renames the package to the version string published by Microsoft.</string>
-      <key>Identifier</key>
-      <string>com.github.primalcurve.pkg.published_version.microsoftteams</string>
-      <key>Input</key>
-      <dict>
-         <key>NAME</key>
-         <string>Microsoft Teams</string>
-         <key>VENDOR</key>
-         <string>Microsoft</string>
-         <key>SOFTWARETITLE</key>
-         <string>Teams</string>
-      </dict>
-      <key>MinimumVersion</key>
-      <string>1.0.0</string>
-      <key>ParentRecipe</key>
-      <string>com.github.rtrouton.download.microsoftteams</string>
-      <key>Process</key>
-      <array>
-         <dict>
-            <key>Arguments</key>
+    <dict>
+        <key>Description</key>
+        <string>Downloads the latest version of Microsoft's Teams installer package and renames the package to the version string published by Microsoft.</string>
+        <key>Identifier</key>
+        <string>com.github.primalcurve.pkg.published_version.microsoftteams</string>
+        <key>Input</key>
+        <dict>
+            <key>NAME</key>
+            <string>Microsoft Teams</string>
+            <key>VENDOR</key>
+            <string>Microsoft</string>
+            <key>SOFTWARETITLE</key>
+            <string>Teams</string>
+        </dict>
+        <key>MinimumVersion</key>
+        <string>1.0.0</string>
+        <key>ParentRecipe</key>
+        <string>com.github.rtrouton.download.microsoftteams</string>
+        <key>Process</key>
+        <array>
             <dict>
-               <key>destination_path</key>
-               <string>%RECIPE_CACHE_DIR%/downloads/unpack</string>
-               <key>flat_pkg_path</key>
-               <string>%pathname%</string>
+                <key>Processor</key>
+                <string>DeprecationWarning</string>
+                <key>Arguments</key>
+                <dict>
+                    <key>warning_message</key>
+                    <string>This recipe is now non-functional. Due to Microsoft refactoring Teams to use WebView2 over Electron, the use of my custom ASARVersioner Processor will no longer produce the desired result. Please switch to using rtrouton's new recipes.</string>
+                </dict>
             </dict>
-            <key>Processor</key>
-            <string>FlatPkgUnpacker</string>
-         </dict>
-         <dict>
-            <key>Arguments</key>
             <dict>
-               <key>pattern</key>
-               <string>%RECIPE_CACHE_DIR%/downloads/unpack/*Teams*.pkg</string>
+                <key>Processor</key>
+                <string>StopProcessingIf</string>
+                <key>Arguments</key>
+                <dict>
+                    <key>predicate</key>
+                    <string>TRUEPREDICATE</string>
+                </dict>
             </dict>
-            <key>Processor</key>
-            <string>FileFinder</string>
-         </dict>
-         <dict>
-            <key>Arguments</key>
             <dict>
-               <key>destination_path</key>
-               <string>%RECIPE_CACHE_DIR%/downloads/payload</string>
-               <key>pkg_payload_path</key>
-               <string>%found_filename%/Payload</string>
+                <key>Arguments</key>
+                <dict>
+                    <key>destination_path</key>
+                    <string>%RECIPE_CACHE_DIR%/downloads/unpack</string>
+                    <key>flat_pkg_path</key>
+                    <string>%pathname%</string>
+                </dict>
+                <key>Processor</key>
+                <string>FlatPkgUnpacker</string>
             </dict>
-            <key>Processor</key>
-            <string>PkgPayloadUnpacker</string>
-         </dict>
-         <dict>
-            <key>Processor</key>
-            <string>com.github.primalcurve.shared/AsarVersioner</string>
-            <key>comment</key>
-            <string>Custom processor that extracts the version string from the embedded Electron app.asar file.</string>
-            <key>Arguments</key>
             <dict>
-               <key>input_asar_path</key>
-               <string>%RECIPE_CACHE_DIR%/downloads/payload/Microsoft Teams.app/Contents/Resources/app.asar</string>
-               <key>package_json</key>
-               <string>package.json</string>
-               <key>version_key</key>
-               <string>version</string>
+                <key>Arguments</key>
+                <dict>
+                    <key>pattern</key>
+                    <string>%RECIPE_CACHE_DIR%/downloads/unpack/*Teams*.pkg</string>
+                </dict>
+                <key>Processor</key>
+                <string>FileFinder</string>
             </dict>
-         </dict>
-         <dict>
-            <key>Processor</key>
-            <string>PkgCopier</string>
-            <key>Arguments</key>
             <dict>
-               <key>source_pkg</key>
-               <string>%pathname%</string>
-               <key>pkg_path</key>
-               <string>%RECIPE_CACHE_DIR%/%VENDOR%_%SOFTWARETITLE%-%version%.pkg</string>
+                <key>Arguments</key>
+                <dict>
+                    <key>destination_path</key>
+                    <string>%RECIPE_CACHE_DIR%/downloads/payload</string>
+                    <key>pkg_payload_path</key>
+                    <string>%found_filename%/Payload</string>
+                </dict>
+                <key>Processor</key>
+                <string>PkgPayloadUnpacker</string>
             </dict>
-         </dict>
-         <dict>
-            <key>Processor</key>
-            <string>PathDeleter</string>
-            <key>Arguments</key>
             <dict>
-               <key>path_list</key>
-               <array>
-                  <string>%RECIPE_CACHE_DIR%/downloads/unpack</string>
-                  <string>%RECIPE_CACHE_DIR%/downloads/payload</string>
-               </array>
+                <key>Processor</key>
+                <string>com.github.primalcurve.shared/AsarVersioner</string>
+                <key>comment</key>
+                <string>Custom processor that extracts the version string from the embedded Electron app.asar file.</string>
+                <key>Arguments</key>
+                <dict>
+                    <key>input_asar_path</key>
+                    <string>%RECIPE_CACHE_DIR%/downloads/payload/Microsoft Teams.app/Contents/Resources/app.asar</string>
+                    <key>package_json</key>
+                    <string>package.json</string>
+                    <key>version_key</key>
+                    <string>version</string>
+                </dict>
             </dict>
-         </dict>
-      </array>
-   </dict>
+            <dict>
+                <key>Processor</key>
+                <string>PkgCopier</string>
+                <key>Arguments</key>
+                <dict>
+                    <key>source_pkg</key>
+                    <string>%pathname%</string>
+                    <key>pkg_path</key>
+                    <string>%RECIPE_CACHE_DIR%/%VENDOR%_%SOFTWARETITLE%-%version%.pkg</string>
+                </dict>
+            </dict>
+            <dict>
+                <key>Processor</key>
+                <string>PathDeleter</string>
+                <key>Arguments</key>
+                <dict>
+                    <key>path_list</key>
+                    <array>
+                        <string>%RECIPE_CACHE_DIR%/downloads/unpack</string>
+                        <string>%RECIPE_CACHE_DIR%/downloads/payload</string>
+                    </array>
+                </dict>
+            </dict>
+        </array>
+    </dict>
 </plist>
